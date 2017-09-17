@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_main_1_home"
-        android:icon="@drawable/brush_fill"
-        android:title="主页" />
+        android:icon="@drawable/integral"
+        android:title="了解会员特权" />
     <item
         android:id="@+id/menu_main_2_home"
-        android:icon="@drawable/brush_fill"
-        android:title="主页" />
+        android:icon="@drawable/businesscard"
+        android:title="修改资料" />
     <item
         android:id="@+id/menu_main_3_home"
-        android:icon="@drawable/brush_fill"
-        android:title="主页" />
+        android:icon="@drawable/dynamic"
+        android:title="历史成绩" />
     <item
         android:id="@+id/menu_main_4_home"
-        android:icon="@drawable/brush_fill"
-        android:title="主页" />
+        android:icon="@drawable/manage"
+        android:title="个性皮肤" />
     <item
         android:id="@+id/menu_main_5_home"
-        android:icon="@drawable/brush_fill"
-        android:title="主页" />
+        android:icon="@drawable/unlock"
+        android:title="退出账号" />
 </menu>

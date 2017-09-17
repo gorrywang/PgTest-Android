@@ -19,7 +19,8 @@
         android:layout_alignParentBottom="true"
         android:text="isgorry@gmail.com"
         android:textColor="#ffffff"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/nav_text_name"
@@ -28,6 +29,15 @@
         android:layout_above="@+id/nav_text_email"
         android:text="Username"
         android:textColor="#ffffff"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/nav_img_vip"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/vip" />
 
 </RelativeLayout>
