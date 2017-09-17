@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_main_1_home"
+        android:icon="@drawable/brush_fill"
+        android:title="主页" />
+    <item
+        android:id="@+id/menu_main_2_home"
+        android:icon="@drawable/brush_fill"
+        android:title="主页" />
+    <item
+        android:id="@+id/menu_main_3_home"
+        android:icon="@drawable/brush_fill"
+        android:title="主页" />
+    <item
+        android:id="@+id/menu_main_4_home"
+        android:icon="@drawable/brush_fill"
+        android:title="主页" />
+    <item
+        android:id="@+id/menu_main_5_home"
+        android:icon="@drawable/brush_fill"
+        android:title="主页" />
+</menu>
