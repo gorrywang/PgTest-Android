@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.example.iswgr.pgtest.fragment.RankFragment;
@@ -74,6 +75,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setSupportActionBar(mToolBar);
         mBar = getSupportActionBar();
         mBar.setTitle("背诵");
+        mBar.setDisplayHomeAsUpEnabled(true);
+        mBar.setHomeAsUpIndicator(R.drawable.other);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //打开
+                mDrawerFather.openDrawer(Gravity.START);
+                break;
+        }
+        return true;
     }
 
     /**
