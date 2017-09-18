@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import com.example.iswgr.pgtest.fragment.RankFragment;
 import com.example.iswgr.pgtest.fragment.SubjectFragment;
@@ -167,5 +168,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             return mList.size();
         }
 
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+
+        }
     }
 }

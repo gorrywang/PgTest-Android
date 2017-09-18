@@ -10,4 +10,6 @@ public class HttpURL {
     public static final String URL_HOST = "http://pg.eachwang.com";
     //获取所有题目
     public static final String URL_GETALL = URL_HOST + "/getAll";
+    //获取排行榜
+    public static final String URL_RANK = URL_HOST + "/getRanking";
 }

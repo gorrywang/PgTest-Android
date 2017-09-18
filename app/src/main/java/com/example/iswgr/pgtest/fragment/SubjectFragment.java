@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ import cz.msebera.android.httpclient.Header;
  * Created by iswgr on 2017/9/18.
  */
 
-public class SubjectFragment extends Fragment {
+public class SubjectFragment extends BaseFragment {
     @BindView(R.id.frag_sub_recycler_show)
     RecyclerView mRecyclerView;
     Unbinder unbinder;
@@ -54,8 +55,6 @@ public class SubjectFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //加载数据
-        addData();
     }
 
     private void addData() {
@@ -85,6 +84,7 @@ public class SubjectFragment extends Fragment {
      */
     private void loadData() {
         mAdapter = new MyAdapter(R.layout.item_subjects, mList);
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
@@ -95,6 +95,15 @@ public class SubjectFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    //惰性加载
+    @Override
+    protected void lazyLoad() {
+        if (mList == null) {
+            //加载数据
+            addData();
+        }
     }
 
     /**

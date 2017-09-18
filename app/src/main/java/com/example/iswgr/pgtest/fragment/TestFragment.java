@@ -14,7 +14,7 @@ import com.example.iswgr.pgtest.R;
  * Created by iswgr on 2017/9/18.
  */
 
-public class TestFragment extends Fragment {
+public class TestFragment extends BaseFragment {
     private View mView;
 
     @Nullable
@@ -22,5 +22,10 @@ public class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_test, container, false);
         return mView;
+    }
+
+    @Override
+    protected void lazyLoad() {
+
     }
 }
