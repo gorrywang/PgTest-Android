@@ -31,6 +31,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cz.msebera.android.httpclient.Header;
 
+import static com.example.iswgr.pgtest.app.CustomApp.getCtx;
+
 /**
  * 排行榜
  * Created by iswgr on 2017/9/18.
@@ -43,7 +45,7 @@ public class RankFragment extends BaseFragment {
     Unbinder unbinder;
 
     private View mView;
-    private List<RankBean> mList;
+    public static List<RankBean> mList;
     private MyAdapter mAdapter;
     private String mUUID;
     private SharedPreferences mSp;
@@ -54,7 +56,6 @@ public class RankFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_rank, container, false);
         unbinder = ButterKnife.bind(this, mView);
-
         return mView;
     }
 
@@ -125,10 +126,10 @@ public class RankFragment extends BaseFragment {
         //初始化
         if (mSp == null) {
             //sp
-            mSp = getContext().getSharedPreferences("info", Context.MODE_PRIVATE);
+            mSp = getCtx().getSharedPreferences("info", Context.MODE_PRIVATE);
         }
         if (mItemView == null) {
-            mItemView = LayoutInflater.from(getContext()).inflate(R.layout.item_rank_header, null);
+            mItemView = LayoutInflater.from(getCtx()).inflate(R.layout.item_rank_header, null);
         }
         //设置名称
         setUsername(mItemView);

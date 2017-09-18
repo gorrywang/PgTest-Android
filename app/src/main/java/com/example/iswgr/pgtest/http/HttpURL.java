@@ -18,4 +18,6 @@ public class HttpURL {
     public static final String URL_LOGIN = URL_HOST + "/login";
     //注册
     public static final String URL_REGISTER = URL_HOST + "/register";
+    //提交成绩
+    public static final String URL_RESULT = URL_HOST + "/saveResult";
 }
