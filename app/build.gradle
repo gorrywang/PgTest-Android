@@ -24,26 +24,28 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
     //列表
-    compile 'com.android.support:recyclerview-v7:26.+'
     //cardView
-    compile 'com.android.support:cardview-v7:26.+'
     //design
-    compile 'com.android.support:design:26.+'
     //注解
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //圆形图片
-    compile 'de.hdodenhof:circleimageview:2.1.0'
     //引导
-    compile 'com.cleveroad:slidingtutorial:1.0.8'
     //json解析
-    compile 'com.google.code.gson:gson:2.8.1'
     //第三方recyclerview
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
     //联网
+    //好看的动画
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:design:26.+'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.cleveroad:slidingtutorial:1.0.8'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
     compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.github.john990:WaveView:v0.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }

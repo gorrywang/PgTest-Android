@@ -1,5 +1,7 @@
 package com.example.iswgr.pgtest.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -43,12 +45,16 @@ public class RankFragment extends BaseFragment {
     private View mView;
     private List<RankBean> mList;
     private MyAdapter mAdapter;
+    private String mUUID;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_rank, container, false);
         unbinder = ButterKnife.bind(this, mView);
+        //获取UUID
+        SharedPreferences sp = getActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
+        mUUID = sp.getString("uuid", null);
         return mView;
     }
 
@@ -85,7 +91,17 @@ public class RankFragment extends BaseFragment {
     private void showData() {
         mAdapter = new MyAdapter(R.layout.item_rank, mList);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
-        mAdapter.addHeaderView(LayoutInflater.from(getContext()).inflate(R.layout.item_rank_header, null));
+        //头部布局
+        //设置名称
+        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_rank_header, null);
+        if (mUUID == null) {
+            ((TextView) itemView.findViewById(R.id.frag_rank_text_name)).setText("未登录");
+        } else {
+            SharedPreferences sp = getActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
+            String username = sp.getString("username", null);
+            ((TextView) itemView.findViewById(R.id.frag_rank_text_name)).setText(username + "");
+        }
+        mAdapter.addHeaderView(itemView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);

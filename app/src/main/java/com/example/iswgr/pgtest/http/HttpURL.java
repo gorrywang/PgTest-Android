@@ -12,4 +12,6 @@ public class HttpURL {
     public static final String URL_GETALL = URL_HOST + "/getAll";
     //获取排行榜
     public static final String URL_RANK = URL_HOST + "/getRanking";
+    //获取随机题目
+    public static final String URL_RANDOM_TEST = URL_HOST + "/getRandomTest";
 }
