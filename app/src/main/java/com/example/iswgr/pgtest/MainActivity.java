@@ -1,5 +1,7 @@
 package com.example.iswgr.pgtest;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,9 +14,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.iswgr.pgtest.fragment.RankFragment;
 import com.example.iswgr.pgtest.fragment.SubjectFragment;
@@ -42,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private List<Fragment> mList = new ArrayList<>();
     private MyAdapter mAdapter;
     private ActionBar mBar;
+    private String mUUID;
+    private SharedPreferences mSp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +59,51 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         ButterKnife.bind(this);
         //监听
         listener();
+        //sp
+        mSp = getSharedPreferences("info", MODE_PRIVATE);
         //加载toolbar
         addTitle();
         //加载底部导航
         addTab();
+    }
+
+    /**
+     * 侧滑中的个人信息
+     */
+    private void addSlid() {
+        //是否登录
+        mSp = getSharedPreferences("info", MODE_PRIVATE);
+        mUUID = mSp.getString("uuid", null);
+        View headerView = mNavMenu.getHeaderView(0);
+        TextView username = headerView.findViewById(R.id.nav_text_name);
+        TextView email = headerView.findViewById(R.id.nav_text_email);
+        ImageView vip = headerView.findViewById(R.id.nav_img_vip);
+        if (mUUID == null) {
+            email.setText("点击立即登录");
+            username.setText("");
+            vip.setVisibility(View.VISIBLE);
+            email.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    mDrawerFather.closeDrawers();
+                }
+            });
+        } else {
+            String u = mSp.getString("username", null);
+            String e = mSp.getString("email", null);
+            int v = mSp.getInt("vip", 0);
+            username.setText(u);
+            email.setText(e);
+            //是否是会员
+            if (v == 1) {
+                vip.setVisibility(View.VISIBLE);
+            } else {
+                vip.setVisibility(View.GONE);
+            }
+            email.setOnClickListener(null);
+        }
     }
 
     /**
@@ -66,8 +116,56 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         mNavMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_main_1_home:
+                        //会员信息
+                        Toast.makeText(MainActivity.this, "会员可以进行搜题，下个版本见", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_main_2_home:
+                        Toast.makeText(MainActivity.this, "暂不支持修改个人资料，下个版本见", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_main_3_home:
+                        Toast.makeText(MainActivity.this, "暂不支持查看历史成绩，下个版本见", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_main_4_home:
+                        Toast.makeText(MainActivity.this, "暂不支持修改个性装扮，下个版本见", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_main_5_home:
+                        //关于我们
+                        break;
+                    case R.id.menu_main_6_home:
+                        //退出账号
+                        mSp.edit().clear().commit();
+                        Toast.makeText(MainActivity.this, "退出成功", Toast.LENGTH_SHORT).show();
+                        break;
+                }
                 mDrawerFather.closeDrawers();
                 return true;
+            }
+        });
+        //侧滑个人信息
+        mDrawerFather.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                Log.e("tag", 1 + "");
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                Log.e("tag", 2 + "");
+                //信息
+                addSlid();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                Log.e("tag", 3 + "");
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                Log.e("tag", 4 + "");
+
             }
         });
     }

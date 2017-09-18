@@ -46,15 +46,15 @@ public class RankFragment extends BaseFragment {
     private List<RankBean> mList;
     private MyAdapter mAdapter;
     private String mUUID;
+    private SharedPreferences mSp;
+    private View mItemView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_rank, container, false);
         unbinder = ButterKnife.bind(this, mView);
-        //获取UUID
-        SharedPreferences sp = getActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
-        mUUID = sp.getString("uuid", null);
+
         return mView;
     }
 
@@ -93,19 +93,25 @@ public class RankFragment extends BaseFragment {
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         //头部布局
         //设置名称
-        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_rank_header, null);
-        if (mUUID == null) {
-            ((TextView) itemView.findViewById(R.id.frag_rank_text_name)).setText("未登录");
-        } else {
-            SharedPreferences sp = getActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
-            String username = sp.getString("username", null);
-            ((TextView) itemView.findViewById(R.id.frag_rank_text_name)).setText(username + "");
-        }
-        mAdapter.addHeaderView(itemView);
+        setUsername(mItemView);
+        mAdapter.addHeaderView(mItemView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    /**
+     * 设置用户名
+     */
+    private void setUsername(View itemView) {
+        mUUID = mSp.getString("uuid", null);
+        if (mUUID == null) {
+            ((TextView) itemView.findViewById(R.id.frag_rank_text_name)).setText("未登录");
+        } else {
+            String username = mSp.getString("username", null);
+            ((TextView) itemView.findViewById(R.id.frag_rank_text_name)).setText(username + "");
+        }
     }
 
     @Override
@@ -116,6 +122,16 @@ public class RankFragment extends BaseFragment {
 
     @Override
     protected void lazyLoad() {
+        //初始化
+        if (mSp == null) {
+            //sp
+            mSp = getContext().getSharedPreferences("info", Context.MODE_PRIVATE);
+        }
+        if (mItemView == null) {
+            mItemView = LayoutInflater.from(getContext()).inflate(R.layout.item_rank_header, null);
+        }
+        //设置名称
+        setUsername(mItemView);
         if (mList != null)
             return;
         //加载数据

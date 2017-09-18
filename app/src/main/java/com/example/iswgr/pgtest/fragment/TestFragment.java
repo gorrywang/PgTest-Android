@@ -61,7 +61,8 @@ public class TestFragment extends BaseFragment {
 
     @OnClick({R.id.frag_test_btn_1, R.id.frag_test_btn_2, R.id.frag_test_btn_3})
     public void onViewClicked(View view) {
-
+        SharedPreferences sp = getActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
+        mUUID = sp.getString("uuid", null);
         if (mUUID == null) {
             //未登录
             Snackbar.make(mTestBtn1, "您暂未登录, 无法测试", Snackbar.LENGTH_LONG).setAction("登录", new View.OnClickListener() {

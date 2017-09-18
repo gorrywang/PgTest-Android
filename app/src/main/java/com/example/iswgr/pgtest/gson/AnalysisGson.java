@@ -1,7 +1,9 @@
 package com.example.iswgr.pgtest.gson;
 
 import com.example.iswgr.pgtest.bean.RankBean;
+import com.example.iswgr.pgtest.bean.RegisterBean;
 import com.example.iswgr.pgtest.bean.TestBean;
+import com.example.iswgr.pgtest.bean.UserBean;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -55,6 +57,28 @@ public class AnalysisGson {
             list.add(gson.fromJson(jsonElement, RankBean.class));
         }
         return list;
+    }
+
+    /**
+     * 解析登录
+     *
+     * @param data 登录数据
+     * @return 返回用户实体类
+     */
+    public static UserBean analysisLogin(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, UserBean.class);
+    }
+
+    /**
+     * 解析注册
+     *
+     * @param data 登录数据
+     * @return 返回用户实体类
+     */
+    public static RegisterBean analysisRegister(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, RegisterBean.class);
     }
 
 }

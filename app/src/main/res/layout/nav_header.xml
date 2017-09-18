@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="isgorry@gmail.com"
+        android:text=""
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/nav_text_email"
-        android:text="Username"
+        android:text=""
         android:textColor="#ffffff"
         android:textSize="14sp"
         android:textStyle="bold" />

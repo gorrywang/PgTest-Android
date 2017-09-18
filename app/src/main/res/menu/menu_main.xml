@@ -18,6 +18,10 @@
         android:title="个性皮肤" />
     <item
         android:id="@+id/menu_main_5_home"
+        android:icon="@drawable/emoji"
+        android:title="关于我们" />
+    <item
+        android:id="@+id/menu_main_6_home"
         android:icon="@drawable/unlock"
         android:title="退出账号" />
 </menu>
