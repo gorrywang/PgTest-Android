@@ -23,6 +23,8 @@ public class SendRequest {
      */
     public static void sendRequestForPostBackTest(Context context, String url, RequestParams params, TextHttpResponseHandler handler) {
         AsyncHttpClient client = new AsyncHttpClient();
+        client.setBasicAuth("api","key-e57dc67716cd04d846b7589cdd8ebcfe");
         client.post(context, url, params, handler);
     }
+
 }
