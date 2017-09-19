@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //第一次启动清楚info
+        clear();
         //监听
         listener();
         //sp
@@ -66,6 +68,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         addTitle();
         //加载底部导航
         addTab();
+    }
+
+    /**
+     * 清除
+     */
+    private void clear() {
+        SharedPreferences setting = getSharedPreferences("aa", 0);
+        SharedPreferences sp = getSharedPreferences("info", MODE_PRIVATE);
+        Boolean user_first = setting.getBoolean("FIRST", true);
+        if (user_first) {// 第一次则跳转到欢迎页面
+            setting.edit().putBoolean("FIRST", false).commit();
+            sp.edit().clear().commit();
+        }
     }
 
     /**
