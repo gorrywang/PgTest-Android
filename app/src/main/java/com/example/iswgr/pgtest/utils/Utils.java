@@ -24,4 +24,20 @@ public class Utils {
 
         return m.matches();
     }
+
+    /**
+     * 匹配用户名
+     *
+     * @param name 用户名
+     * @return boolean
+     */
+    public static boolean checkName(String name) {
+        String RULE_EMAIL = "[a-zA-Z][a-zA-Z0-9]{5,15}";
+
+        Pattern p = Pattern.compile(RULE_EMAIL);
+
+        Matcher m = p.matcher(name);
+
+        return m.matches();
+    }
 }

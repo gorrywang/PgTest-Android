@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,6 +156,7 @@ public class RegEmailFragment extends BaseFragment {
         params.add("to", email);
         params.add("subject", "验证码");
         mCode = (int) (Math.random() * 9000 + 1000);
+        Log.e("a",mCode+"");
         params.add("text", "尊敬的用户, 您的验证码：" + mCode);
 
         SendRequest.sendRequestForPostBackTest(getContext(), URL_SENDEMAIL, params, new TextHttpResponseHandler() {

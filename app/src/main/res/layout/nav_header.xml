@@ -19,8 +19,7 @@
         android:layout_alignParentBottom="true"
         android:text=""
         android:textColor="#ffffff"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/nav_text_name"
@@ -29,8 +28,7 @@
         android:layout_above="@+id/nav_text_email"
         android:text=""
         android:textColor="#ffffff"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/nav_img_vip"
